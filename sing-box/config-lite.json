@@ -1,0 +1,86 @@
+{
+  "$schema": "https://v6.gh-proxy.org/github.com/reF1nd/sing-box/raw/reF1nd-testing/docs/schema.json",
+  "providers": [
+    { "tag": "守候", "type": "remote", "path": "./providers/守候.json", "url": "http://localhost:3000/download/SNTP" }
+  ],
+  "log": {
+    "level": "fatal",
+    "timestamp": true,
+    "output": "sing-box.log"
+  },
+  "experimental": {
+    "urltest_unified_delay": true,
+    "cache_file": {
+      "enabled": true,
+      "store_dns": true,
+      "store_fakeip": true
+    },
+    "clash_api": {
+      "secret": "",
+      "default_mode": "Rule",
+      "external_ui": "dashboard",
+      "external_controller": "0.0.0.0:9090",
+      "external_ui_download_url": "https://v6.gh-proxy.org/github.com/Zephyruso/zashboard/releases/download/v3.22.0/dist.zip"
+    }
+  },
+  "dns": {
+    "servers": [
+      { "tag": "dns-ali", "type": "https", "server": "223.5.5.5" },
+      { "tag": "dns-cloudflare", "type": "https", "server": "cloudflare-dns.com", "detour": "GLOBAL" },
+      { "tag": "dns-fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/15", "inet6_range": "fc00::/18" }
+    ],
+    "rules": [
+      { "clash_mode": "Direct", "server": "dns-ali" },
+      { "clash_mode": "Global", "server": "dns-cloudflare" },
+      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "AllowAds", "invert": true }, { "rule_set": "geosite/adblock" } ], "action": "predefined" },
+      { "rule_set": "geosite/china", "server": "dns-ali" },
+      { "query_type": [ "A", "AAAA" ], "server": "dns-fakeip", "rewrite_ttl": 1 }
+    ],
+    "final": "dns-cloudflare",
+    "optimistic": true,
+    "reverse_mapping": true
+  },
+  "http_clients": [
+    { "tag": "sub-client", "detour": "📦 订阅更新" }
+  ],
+  "inbounds": [
+    { "tag": "mixed-in", "type": "mixed", "listen": "::", "listen_port": 7890 },
+    { "tag": "tun-in", "type": "tun", "address": [ "172.18.0.1/30", "fdfe:dcba:9876::1/126" ], "auto_route": true, "strict_route": true, "auto_redirect": true }
+  ],
+  "outbounds": [
+    { "tag": "⛔️ 拒绝连接", "type": "block" },
+    { "tag": "🌐 本地直连", "type": "direct" },
+    { "tag": "♻️ 自动选择", "type": "urltest", "use_all_providers": true },
+    { "tag": "🎯 手动选择", "type": "selector", "use_all_providers": true },
+    { "tag": "🇨🇳 国内直连", "type": "selector", "use_all_providers": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🇺🇳 国外代理", "type": "selector", "use_all_providers": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "📦 订阅更新", "type": "selector", "use_all_providers": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🍥 漏网之鱼", "type": "selector", "use_all_providers": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🇨🇳 国内直连", "🇺🇳 国外代理", "📦 订阅更新", "🍥 漏网之鱼" ] }
+  ],
+  "route": {
+    "rules": [
+      { "port": 53, "action": "hijack-dns" },
+      { "ip_is_private": true, "action": "bypass", "outbound": "🌐 本地直连" },
+      { "clash_mode": "Direct", "action": "bypass", "outbound": "🌐 本地直连" },
+      { "clash_mode": "Global", "outbound": "GLOBAL" },
+      { "rule_set": "geoip/china", "action": "bypass" },
+      { "action": "sniff" },
+      { "protocol": "dns", "action": "hijack-dns" },
+      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "AllowAds", "invert": true }, { "rule_set": "geosite/adblock" } ], "action": "reject" },
+      { "rule_set": "geosite/proxy", "outbound": "🇺🇳 国外代理" },
+      { "rule_set": "geosite/china", "outbound": "🇨🇳 国内直连" },
+      { "rule_set": "geoip/proxy", "outbound": "🇺🇳 国外代理" },
+      { "rule_set": "geoip/china", "outbound": "🇨🇳 国内直连" }
+    ],
+    "final": "🍥 漏网之鱼",
+    "find_process": true,
+    "auto_detect_interface": true,
+    "default_domain_resolver": "dns-ali",
+    "default_domain_match_strategy": "prefer_fqdn",
+    "rule_set": [
+      { "tag": "geosite/adblock", "type": "remote", "path": "./rules/geosite/adblock.srs", "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/adblock/sing-box.srs" },
+      { "tag": [ "geoip/china", "geosite/china", "geoip/proxy", "geosite/proxy" ], "type": "remote", "path": "./rules/{tag}.srs", "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/singbox/geo/{tag}.srs" }
+    ]
+  }
+}
