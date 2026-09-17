@@ -11,7 +11,6 @@
   },
   "experimental": {
     "urltest_unified_delay": true,
-    "tcp_concurrent": true,
     "cache_file": {
       "enabled": true,
       "store_dns": true,
@@ -131,6 +130,7 @@
     ],
     "final": "🍥 漏网之鱼",
     "find_process": true,
+    "tcp_concurrent_dial": true,
     "auto_detect_interface": true,
     "default_http_client": "sub-client",
     "default_domain_resolver": "dns-direct",
