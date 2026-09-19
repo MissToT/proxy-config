@@ -10,6 +10,10 @@ Fallback: &Fallback { type: fallback, interrupt-exist-connections: true, hidden:
 IPCIDR: &IPCIDR { type: http, interval: 86400, proxy: "订阅更新", behavior: ipcidr, format: mrs }
 DOMAIN: &DOMAIN { type: http, interval: 86400, proxy: "订阅更新", behavior: domain, format: mrs }
 CLASSICAL: &CLASSICAL { type: http, interval: 86400, proxy: "订阅更新", behavior: classical, format: text }
+# 锚点 - DNS服务
+DNS-Bootstrap: &DNS-Bootstrap [ 223.5.5.5, 119.29.29.29 ]
+DNS-Direct: &DNS-Direct [ "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query" ]
+DNS-Global: &DNS-Global [ "https://cloudflare-dns.com/dns-query#GLOBAL", "https://dns.google/dns-query#GLOBAL" ]
 # 锚点 - 远程订阅组
 Providers: &Providers { type: http, interval: 86400, proxy: "订阅更新", health-check: { enable: true, url: "https://captive.apple.com/generate_204", interval: 600 }, <<: *FilterOthers }
 ############################################## - ⚓️ 锚点区结束 - ##############################################
@@ -73,8 +77,8 @@ dns:
     - RULE-SET,GeoSite-China,real-ip
     - MATCH,fake-ip
   nameserver-policy: { "rule-set:GeoSite-AdBlock": "rcode://success" }
-  default-nameserver: [ 223.5.5.5, 119.29.29.29 ]
-  nameserver: [ "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query" ]
+  default-nameserver: *DNS-Bootstrap
+  nameserver: *DNS-Direct
 
 tun:
   enable: false
@@ -113,7 +117,7 @@ proxy-groups:
   - { name: "国外代理", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/United_Nations.png" }
   - { name: "广告拦截", type: select, proxies: [ "⛔️ 拒绝连接", "PASS" ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/AdBlack.png" }
   - { name: "漏网之鱼", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/Final.png" }
-  - { name: "GLOBAL", <<: [ *Select, *FilterSelect ], proxies: [ "自动选择", "手动选择", "🌐 本地直连", "⛔️ 拒绝连接", "订阅更新", "谷歌推送", "Telegram", "Twitter", "Emby", "E-Hentai", "TikTok", "YouTube", "AI", "Games", "Google", "Cloudflare", "日本网站", "台湾网站", "国内直连", "国外代理", "广告拦截", "漏网之鱼" ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/Global.png" }
+  - { name: "GLOBAL", <<: [ *Select, *FilterSelect ], proxies: [ "自动选择", "手动选择", "订阅更新", "谷歌推送", "Telegram", "Twitter", "Emby", "E-Hentai", "TikTok", "YouTube", "AI", "Games", "Google", "Cloudflare", "日本网站", "台湾网站", "国内直连", "国外代理", "广告拦截", "漏网之鱼" ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/Global.png" }
 
 rule-providers:
   GeoIP-China: { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geoip/china.mrs" }
