@@ -79,8 +79,7 @@
     "default_domain_resolver": "dns-ali",
     "default_domain_match_strategy": "prefer_fqdn",
     "rule_set": [
-      { "tag": "geosite/adblock", "type": "remote", "path": "./rules/geosite/adblock.srs", "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/adblock/sing-box.srs" },
-      { "tag": [ "geoip/china", "geosite/china", "geoip/proxy", "geosite/proxy" ], "type": "remote", "path": "./rules/{tag}.srs", "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/singbox/geo/{tag}.srs" }
+      { "tag": [ "geoip/china", "geosite/china", "geoip/proxy", "geosite/proxy", "geosite/adblock" ], "type": "remote", "path": "./rules/{tag}.srs", "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/singbox/geo/{tag}.srs" }
     ]
   }
 }
