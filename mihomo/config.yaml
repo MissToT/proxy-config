@@ -71,12 +71,11 @@ dns:
   fake-ip-range6: fc00::/18
   fake-ip-filter-mode: rule
   fake-ip-filter:
-    - RULE-SET,GeoSite-AdBlock,real-ip
+    - RULE-SET,GeoSite-AdBlock,fake-ip
     - RULE-SET,GeoSite-FakeIP-Filter,real-ip
     - RULE-SET,GeoSite-Private,real-ip
     - RULE-SET,GeoSite-China,real-ip
     - MATCH,fake-ip
-  nameserver-policy: { "rule-set:GeoSite-AdBlock": "rcode://success" }
   default-nameserver: *DNS-Bootstrap
   nameserver: *DNS-Direct
 
