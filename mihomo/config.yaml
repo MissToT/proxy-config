@@ -12,6 +12,7 @@ DOMAIN: &DOMAIN { type: http, interval: 86400, proxy: "订阅更新", behavior: 
 CLASSICAL: &CLASSICAL { type: http, interval: 86400, proxy: "订阅更新", behavior: classical, format: text }
 # 锚点 - DNS服务
 DNS-Bootstrap: &DNS-Bootstrap [ 223.5.5.5, 119.29.29.29 ]
+DNS-Providers: &DNS-Providers [ "https://dns.alidns.com/dns-query#ecs=120.85.0.0/16&ecs-override=true", "https://doh.pub/dns-query#ecs=120.85.0.0/16&ecs-override=true" ]
 DNS-Direct: &DNS-Direct [ "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query" ]
 DNS-Global: &DNS-Global [ "https://cloudflare-dns.com/dns-query#GLOBAL", "https://dns.google/dns-query#GLOBAL" ]
 # 锚点 - 远程订阅组
@@ -22,7 +23,6 @@ Providers: &Providers { type: http, interval: 86400, proxy: "订阅更新", heal
 proxy-providers:
   守候: { <<: *Providers, url: "http://localhost:3000/download/SNTP", path: "./providers/守候.yaml", override: { additional-prefix: "[守候] " } }
   良心云: { <<: *Providers, url: "http://localhost:3000/download/LXY", path: "./providers/良心云.yaml", override: { additional-prefix: "[良心云] " } }
-  自建: { <<: *Providers, url: "http://localhost:3000/download/Node", path: "./providers/自建.yaml", override: { additional-prefix: "[自建] " } }
 
 # 基础配置
 mixed-port: 7890
@@ -78,6 +78,7 @@ dns:
     - RULE-SET,GeoSite-China,real-ip
     - MATCH,fake-ip
   default-nameserver: *DNS-Bootstrap
+  proxy-server-nameserver: *DNS-Providers
   nameserver: *DNS-Direct
 
 tun:
