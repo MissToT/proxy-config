@@ -1,8 +1,7 @@
 {
   "providers": [
     { "tag": "守候", "type": "remote", "path": "./providers/守候.json", "url": "http://localhost:3000/download/SNTP" },
-    { "tag": "良心云", "type": "remote", "path": "./providers/良心云.json", "url": "http://localhost:3000/download/LXY" },
-    { "tag": "自建", "type": "remote", "path": "./providers/自建.json", "url": "http://localhost:3000/download/Node" }
+    { "tag": "良心云", "type": "remote", "path": "./providers/良心云.json", "url": "http://localhost:3000/download/LXY" }
   ],
   "log": {
     "level": "panic",
@@ -26,16 +25,6 @@
       "access_control_allow_private_network": true
     }
   },
-  "services": [
-    {
-      "type": "api",
-      "listen": "0.0.0.0",
-      "listen_port": 9191,
-      "secret": "RurukaSuki",
-      "access_control_allow_origin": "*",
-      "access_control_allow_private_network": true
-    }
-  ],
   "dns": {
     "servers": [
       { "tag": "dns-hosts", "type": "hosts", "predefined": { "services.googleapis.cn": [ "64.233.188.94", "64.233.189.94" ] } },
@@ -84,17 +73,13 @@
     { "tag": "🎬 Emby", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "📚 E-Hentai", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🎶 TikTok", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "📺 YouTube", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🤖 AI", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "🎮 Games", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "🔍 Google", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "🧩 Cloudflare", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🇯🇵 日本网站", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ], "include": "(?i)(🇯🇵|日本|Japan|JP)" },
     { "tag": "🇹🇼 台湾网站", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ], "include": "(?i)(🇭🇰|香港|HongKong|HK|🇹🇼|台湾|Taiwan|TW)" },
     { "tag": "🇨🇳 国内直连", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🇺🇳 国外代理", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🍥 漏网之鱼", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "📦 订阅更新", "💌 谷歌推送", "📱 Telegram", "🐦 Twitter", "🎬 Emby", "📚 E-Hentai", "🎶 TikTok", "📺 YouTube", "🤖 AI", "🎮 Games", "🔍 Google", "🧩 Cloudflare", "🇯🇵 日本网站", "🇹🇼 台湾网站", "🇨🇳 国内直连", "🇺🇳 国外代理", "🍥 漏网之鱼" ] }
+    { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "📦 订阅更新", "💌 谷歌推送", "📱 Telegram", "🐦 Twitter", "🎬 Emby", "📚 E-Hentai", "🎶 TikTok", "🤖 AI", "🇯🇵 日本网站", "🇹🇼 台湾网站", "🇨🇳 国内直连", "🇺🇳 国外代理", "🍥 漏网之鱼" ] }
   ],
   "route": {
     "rules": [
@@ -111,21 +96,15 @@
       { "rule_set": "geosite/twitter", "outbound": "🐦 Twitter" },
       { "rule_set": "geosite/tiktok", "outbound": "🎶 TikTok" },
       { "rule_set": "geosite/ai", "outbound": "🤖 AI" },
-      { "rule_set": "geosite/youtube", "outbound": "📺 YouTube" },
       { "rule_set": "geosite/emby", "outbound": "🎬 Emby" },
       { "rule_set": "geosite/ehentai", "outbound": "📚 E-Hentai" },
-      { "rule_set": "geosite/games", "outbound": "🎮 Games" },
       { "rule_set": "geosite/japan", "outbound": "🇯🇵 日本网站" },
       { "rule_set": "geosite/taiwan", "outbound": "🇹🇼 台湾网站" },
-      { "rule_set": "geosite/google", "outbound": "🔍 Google" },
-      { "rule_set": "geosite/cloudflare", "outbound": "🧩 Cloudflare" },
       { "rule_set": "geosite/proxy", "outbound": "🇺🇳 国外代理" },
       { "rule_set": "geosite/china", "outbound": "🇨🇳 国内直连" },
       { "rule_set": "geoip/telegram", "outbound": "📱 Telegram" },
       { "rule_set": "geoip/twitter", "outbound": "🐦 Twitter" },
       { "rule_set": "geoip/ai", "outbound": "🤖 AI" },
-      { "rule_set": "geoip/google", "outbound": "🔍 Google" },
-      { "rule_set": "geoip/cloudflare", "outbound": "🧩 Cloudflare" },
       { "rule_set": "geoip/proxy", "outbound": "🇺🇳 国外代理" },
       { "rule_set": "geoip/china", "outbound": "🇨🇳 国内直连" }
     ],
@@ -137,7 +116,7 @@
     "default_domain_resolver": "dns-direct",
     "default_domain_match_strategy": "prefer_fqdn",
     "rule_set": [
-      { "tag": [ "geoip/ai", "geosite/ai", "geoip/china", "geosite/china", "geoip/proxy", "geosite/proxy", "geosite/emby", "geoip/google", "geosite/google", "geosite/games", "geosite/japan", "geoip/twitter", "geosite/twitter", "geosite/taiwan", "geosite/tiktok", "geoip/telegram", "geosite/telegram", "geosite/adblock", "geosite/ehentai", "geosite/youtube", "geoip/cloudflare", "geosite/cloudflare", "geosite/googlefcm", "geosite/fake-ip-filter" ], "type": "remote", "path": "./rules/{tag}.srs", "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/singbox/geo/{tag}.srs" }
+      { "tag": [ "geoip/ai", "geosite/ai", "geoip/china", "geosite/china", "geoip/proxy", "geosite/proxy", "geosite/emby", "geosite/japan", "geoip/twitter", "geosite/twitter", "geosite/taiwan", "geosite/tiktok", "geoip/telegram", "geosite/telegram", "geosite/adblock", "geosite/ehentai", "geosite/googlefcm", "geosite/fake-ip-filter" ], "type": "remote", "path": "./rules/{tag}.srs", "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/singbox/geo/{tag}.srs" }
     ]
   }
 }
