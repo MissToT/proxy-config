@@ -1,6 +1,6 @@
 {
   "providers": [
-    { "tag": "守候", "type": "remote", "path": "./providers/守候.json", "url": "http://localhost:3000/download/SNTP", "override_dialer": { "domain_resolver": { "client_subnet": "120.85.0.0/16", "server": "dns-direct" } } },
+    { "tag": "守候", "type": "remote", "path": "./providers/守候.json", "url": "http://localhost:3000/download/SNTP" },
     { "tag": "良心云", "type": "remote", "path": "./providers/良心云.json", "url": "http://localhost:3000/download/LXY" }
   ],
   "log": {
