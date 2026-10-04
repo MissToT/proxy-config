@@ -78,7 +78,8 @@ dns:
     - RULE-SET,GeoSite-China,real-ip
     - MATCH,fake-ip
   default-nameserver: *DNS-Bootstrap
-  proxy-server-nameserver: *DNS-Providers
+  proxy-server-nameserver: *DNS-Direct
+  proxy-server-nameserver-policy: { "+.266nets.com": *DNS-Providers }
   nameserver: *DNS-Direct
 
 tun:
