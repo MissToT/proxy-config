@@ -69,17 +69,17 @@
     { "tag": "📦 订阅更新", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "💌 谷歌推送", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "📱 Telegram", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "🐦 Twitter", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "🎬 Emby", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "📚 E-Hentai", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "🎶 TikTok", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🤖 AI", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🎬 Emby", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🎶 TikTok", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "📺 YouTube", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🇯🇵 日本网站", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ], "include": "(?i)(🇯🇵|日本|Japan|JP)" },
     { "tag": "🇹🇼 台湾网站", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ], "include": "(?i)(🇭🇰|香港|HongKong|HK|🇹🇼|台湾|Taiwan|TW)" },
     { "tag": "🇨🇳 国内直连", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🇺🇳 国外代理", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🍥 漏网之鱼", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "📦 订阅更新", "💌 谷歌推送", "📱 Telegram", "🐦 Twitter", "🎬 Emby", "📚 E-Hentai", "🎶 TikTok", "🤖 AI", "🇯🇵 日本网站", "🇹🇼 台湾网站", "🇨🇳 国内直连", "🇺🇳 国外代理", "🍥 漏网之鱼" ] }
+    { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "📦 订阅更新", "💌 谷歌推送", "📱 Telegram", "📚 E-Hentai", "🤖 AI", "🎬 Emby", "🎶 TikTok", "📺 YouTube", "🇯🇵 日本网站", "🇹🇼 台湾网站", "🇨🇳 国内直连", "🇺🇳 国外代理", "🍥 漏网之鱼" ] }
   ],
   "route": {
     "rules": [
@@ -93,17 +93,16 @@
       { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "AllowAds", "invert": true }, { "rule_set": "geosite/adblock" } ], "action": "reject" },
       { "rule_set": "geosite/googlefcm", "outbound": "💌 谷歌推送" },
       { "rule_set": "geosite/telegram", "outbound": "📱 Telegram" },
-      { "rule_set": "geosite/twitter", "outbound": "🐦 Twitter" },
-      { "rule_set": "geosite/tiktok", "outbound": "🎶 TikTok" },
+      { "rule_set": "geosite/ehentai", "outbound": "📚 E-Hentai" },
       { "rule_set": "geosite/ai", "outbound": "🤖 AI" },
       { "rule_set": "geosite/emby", "outbound": "🎬 Emby" },
-      { "rule_set": "geosite/ehentai", "outbound": "📚 E-Hentai" },
+      { "rule_set": "geosite/tiktok", "outbound": "🎶 TikTok" },
+      { "rule_set": "geosite/youtube", "outbound": "📺 YouTube" },
       { "rule_set": "geosite/japan", "outbound": "🇯🇵 日本网站" },
       { "rule_set": "geosite/taiwan", "outbound": "🇹🇼 台湾网站" },
       { "rule_set": "geosite/proxy", "outbound": "🇺🇳 国外代理" },
       { "rule_set": "geosite/china", "outbound": "🇨🇳 国内直连" },
       { "rule_set": "geoip/telegram", "outbound": "📱 Telegram" },
-      { "rule_set": "geoip/twitter", "outbound": "🐦 Twitter" },
       { "rule_set": "geoip/ai", "outbound": "🤖 AI" },
       { "rule_set": "geoip/proxy", "outbound": "🇺🇳 国外代理" },
       { "rule_set": "geoip/china", "outbound": "🇨🇳 国内直连" }
@@ -116,7 +115,7 @@
     "default_domain_resolver": "dns-direct",
     "default_domain_match_strategy": "prefer_fqdn",
     "rule_set": [
-      { "tag": [ "geoip/ai", "geosite/ai", "geoip/china", "geosite/china", "geoip/proxy", "geosite/proxy", "geosite/emby", "geosite/japan", "geoip/twitter", "geosite/twitter", "geosite/taiwan", "geosite/tiktok", "geoip/telegram", "geosite/telegram", "geosite/adblock", "geosite/ehentai", "geosite/googlefcm", "geosite/fake-ip-filter" ], "type": "remote", "path": "./rules/{tag}.srs", "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/singbox/geo/{tag}.srs" }
+      { "tag": [ "geoip/ai", "geosite/ai", "geoip/china", "geosite/china", "geoip/proxy", "geosite/proxy", "geosite/emby", "geosite/japan", "geosite/taiwan", "geosite/tiktok", "geoip/telegram", "geosite/telegram", "geosite/adblock", "geosite/ehentai", "geosite/youtube", "geosite/googlefcm", "geosite/fake-ip-filter" ], "type": "remote", "path": "./rules/{tag}.srs", "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/singbox/geo/{tag}.srs" }
     ]
   }
 }
