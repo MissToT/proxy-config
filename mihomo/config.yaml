@@ -12,7 +12,7 @@ DOMAIN: &DOMAIN { type: http, interval: 86400, proxy: "订阅更新", behavior: 
 CLASSICAL: &CLASSICAL { type: http, interval: 86400, proxy: "订阅更新", behavior: classical, format: text }
 # 锚点 - DNS服务
 DNS-Bootstrap: &DNS-Bootstrap [ 223.5.5.5, 119.29.29.29 ]
-DNS-Providers: &DNS-Providers [ "https://dns.alidns.com/dns-query#ecs=120.85.0.0/16&ecs-override=true", "https://doh.pub/dns-query#ecs=120.85.0.0/16&ecs-override=true" ]
+DNS-SB-SNTP: &DNS-SB-SNTP [ "https://dns.alidns.com/dns-query#ecs=120.85.0.0/16&ecs-override=true", "https://doh.pub/dns-query#ecs=120.85.0.0/16&ecs-override=true" ]
 DNS-Direct: &DNS-Direct [ "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query" ]
 DNS-Global: &DNS-Global [ "https://cloudflare-dns.com/dns-query#GLOBAL", "https://dns.google/dns-query#GLOBAL" ]
 # 锚点 - 远程订阅组
@@ -79,7 +79,7 @@ dns:
     - MATCH,fake-ip
   default-nameserver: *DNS-Bootstrap
   proxy-server-nameserver: *DNS-Direct
-  proxy-server-nameserver-policy: { "+.266nets.com": *DNS-Providers }
+  proxy-server-nameserver-policy: { "+.266nets.com": *DNS-SB-SNTP, "+.nodecon.uk": *DNS-SB-SNTP }
   nameserver: *DNS-Direct
 
 tun:
@@ -102,43 +102,32 @@ proxy-groups:
   - { name: "自动选择", <<: [ *UrlTest, *FilterSelect ], include-all-providers: true, hidden: false, icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/Auto.png" }
   - { name: "手动选择", type: select, include-all-providers: true, interrupt-exist-connections: true, icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/Proxy.png" }
   - { name: "订阅更新", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/Stack.png" }
-  - { name: "谷歌推送", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/Gmail.png" }
+  - { name: "谷歌推送", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/Google_Search.png" }
   - { name: "Telegram", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/Telegram.png" }
-  - { name: "Twitter", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/Twitter.png" }
-  - { name: "Emby", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/Emby.png" }
   - { name: "E-Hentai", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/Exhentai.svg" }
+  - { name: "AI", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/ChatGPT.png" }
+  - { name: "Emby", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/Emby.png" }
   - { name: "TikTok", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/TikTok.png" }
   - { name: "YouTube", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/YouTube.png" }
-  - { name: "AI", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/ChatGPT.png" }
-  - { name: "Games", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/Game.png" }
-  - { name: "Google", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/Google_Search.png" }
-  - { name: "Cloudflare", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/Cloudflare.png" }
   - { name: "日本网站", <<: *Select, filter: "^(?=.*(?i)(日本|🇯🇵|JP))(?!.*(2.00x|排除2)).*$", icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/Japan.png" }
   - { name: "台湾网站", <<: *Select, filter: "^(?=.*(?i)(香港|🇭🇰|HK|台湾|🇹🇼|TW))(?!.*(2.00x|排除2)).*$", icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/Taiwan.png" }
   - { name: "国内直连", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/China.png" }
   - { name: "国外代理", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/United_Nations.png" }
   - { name: "广告拦截", type: select, proxies: [ "⛔️ 拒绝连接", "PASS" ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/AdBlack.png" }
   - { name: "漏网之鱼", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/Final.png" }
-  - { name: "GLOBAL", <<: [ *Select, *FilterSelect ], proxies: [ "自动选择", "手动选择", "订阅更新", "谷歌推送", "Telegram", "Twitter", "Emby", "E-Hentai", "TikTok", "YouTube", "AI", "Games", "Google", "Cloudflare", "日本网站", "台湾网站", "国内直连", "国外代理", "广告拦截", "漏网之鱼" ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/Global.png" }
+  - { name: "GLOBAL", <<: [ *Select, *FilterSelect ], proxies: [ "自动选择", "手动选择", "订阅更新", "谷歌推送", "Telegram", "E-Hentai", "AI", "Emby", "TikTok", "YouTube", "日本网站", "台湾网站", "国内直连", "国外代理", "广告拦截", "漏网之鱼" ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/Global.png" }
 
 rule-providers:
   GeoIP-China: { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geoip/china.mrs" }
   GeoIP-Proxy: { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geoip/proxy.mrs" }
   GeoIP-Private: { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geoip/private.mrs" }
   GeoIP-Telegram: { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geoip/telegram.mrs" }
-  GeoIP-Twitter: { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geoip/twitter.mrs" }
-  GeoIP-Google: { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geoip/google.mrs" }
-  GeoIP-Cloudflare: { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geoip/cloudflare.mrs" }
   GeoIP-AI: { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geoip/ai.mrs" }
   GeoSite-China: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/china.mrs" }
   GeoSite-Proxy: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/proxy.mrs" }
   GeoSite-Private: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/private.mrs" }
   GeoSite-Telegram: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/telegram.mrs" }
-  GeoSite-Twitter: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/twitter.mrs" }
-  GeoSite-Google: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/google.mrs" }
   GeoSite-GoogleFCM: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/googlefcm.mrs" }
-  GeoSite-Cloudflare: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/cloudflare.mrs" }
-  GeoSite-Games: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/games.mrs" }
   GeoSite-AI: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/ai.mrs" }
   GeoSite-Emby: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/emby.mrs" }
   GeoSite-Japan: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/japan.mrs" }
@@ -156,25 +145,18 @@ rules:
   - RULE-SET,GeoSite-Private,🌐 本地直连
   - RULE-SET,GeoSite-GoogleFCM,谷歌推送
   - RULE-SET,GeoSite-Telegram,Telegram
-  - RULE-SET,GeoSite-Twitter,Twitter
   - RULE-SET,GeoSite-TikTok,TikTok
   - RULE-SET,GeoSite-AI,AI
   - RULE-SET,GeoSite-YouTube,YouTube
   - RULE-SET,GeoSite-Emby,Emby
   - RULE-SET,GeoSite-E-Hentai,E-Hentai
-  - RULE-SET,GeoSite-Games,Games
   - RULE-SET,GeoSite-Japan,日本网站
   - RULE-SET,GeoSite-Taiwan,台湾网站
-  - RULE-SET,GeoSite-Google,Google
-  - RULE-SET,GeoSite-Cloudflare,Cloudflare
   - RULE-SET,GeoSite-Proxy,国外代理
   - RULE-SET,GeoSite-China,国内直连
   - RULE-SET,GeoIP-Private,🌐 本地直连,no-resolve
   - RULE-SET,GeoIP-Telegram,Telegram,no-resolve
-  - RULE-SET,GeoIP-Twitter,Twitter,no-resolve
   - RULE-SET,GeoIP-AI,AI,no-resolve
-  - RULE-SET,GeoIP-Google,Google,no-resolve
-  - RULE-SET,GeoIP-Cloudflare,Cloudflare,no-resolve
   - RULE-SET,GeoIP-Proxy,国外代理,no-resolve
   - RULE-SET,GeoIP-China,国内直连,no-resolve
   - MATCH,漏网之鱼
