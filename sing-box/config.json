@@ -20,7 +20,7 @@
       "default_mode": "Rule",
       "external_ui": "dashboard",
       "external_controller": "0.0.0.0:9090",
-      "external_ui_download_url": "https://v6.gh-proxy.org/github.com/11b7ac04f8/dashboard/releases/latest/download/dist.zip",
+      "external_ui_download_url": "https://axisnow.gh-proxy.org/github.com/11b7ac04f8/dashboard/releases/latest/download/dist.zip",
       "access_control_allow_origin": "*",
       "access_control_allow_private_network": true
     }
@@ -115,7 +115,7 @@
     "default_domain_resolver": "dns-direct",
     "default_domain_match_strategy": "prefer_fqdn",
     "rule_set": [
-      { "tag": [ "geoip/ai", "geosite/ai", "geoip/china", "geosite/china", "geoip/proxy", "geosite/proxy", "geosite/emby", "geosite/japan", "geosite/taiwan", "geosite/tiktok", "geoip/telegram", "geosite/telegram", "geosite/adblock", "geosite/ehentai", "geosite/youtube", "geosite/googlefcm", "geosite/fake-ip-filter" ], "type": "remote", "path": "./rules/{tag}.srs", "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/singbox/geo/{tag}.srs" }
+      { "tag": [ "geoip/ai", "geosite/ai", "geoip/china", "geosite/china", "geoip/proxy", "geosite/proxy", "geosite/emby", "geosite/japan", "geosite/taiwan", "geosite/tiktok", "geoip/telegram", "geosite/telegram", "geosite/adblock", "geosite/ehentai", "geosite/youtube", "geosite/googlefcm", "geosite/fake-ip-filter" ], "type": "remote", "path": "./rules/{tag}.srs", "url": "https://axisnow.gh-proxy.org/github.com/MissToT/rule-set/raw/singbox/geo/{tag}.srs" }
     ]
   }
 }
