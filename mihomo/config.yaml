@@ -39,7 +39,7 @@ find-process-mode: always
 authentication: [ "Ruruka:DaiSuiKi" ]
 skip-auth-prefixes: [ "127.0.0.1/8", "::1/128" ]
 
-external-ui-url: "https://v6.gh-proxy.org/github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
+external-ui-url: "https://axisnow.gh-proxy.org/github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
 external-ui: "dashboard"
 external-controller: 0.0.0.0:9090
 secret: "RurukaSuki"
@@ -99,45 +99,45 @@ proxies:
   - { name: "🔰 DNS-Hijack", type: dns }
 
 proxy-groups:
-  - { name: "自动选择", <<: [ *UrlTest, *FilterSelect ], include-all-providers: true, hidden: false, icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/Auto.png" }
-  - { name: "手动选择", type: select, include-all-providers: true, interrupt-exist-connections: true, icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/Proxy.png" }
-  - { name: "订阅更新", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/Stack.png" }
-  - { name: "谷歌推送", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/Google_Search.png" }
-  - { name: "Telegram", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/Telegram.png" }
-  - { name: "E-Hentai", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/Exhentai.svg" }
-  - { name: "AI", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/ChatGPT.png" }
-  - { name: "Emby", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/Emby.png" }
-  - { name: "TikTok", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/TikTok.png" }
-  - { name: "YouTube", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/YouTube.png" }
-  - { name: "日本网站", <<: *Select, filter: "^(?=.*(?i)(日本|🇯🇵|JP))(?!.*(2.00x|排除2)).*$", icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/Japan.png" }
-  - { name: "台湾网站", <<: *Select, filter: "^(?=.*(?i)(香港|🇭🇰|HK|台湾|🇹🇼|TW))(?!.*(2.00x|排除2)).*$", icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/Taiwan.png" }
-  - { name: "国内直连", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/China.png" }
-  - { name: "国外代理", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/United_Nations.png" }
-  - { name: "广告拦截", type: select, proxies: [ "⛔️ 拒绝连接", "PASS" ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/AdBlack.png" }
-  - { name: "漏网之鱼", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/Final.png" }
-  - { name: "GLOBAL", <<: [ *Select, *FilterSelect ], proxies: [ "自动选择", "手动选择", "订阅更新", "谷歌推送", "Telegram", "E-Hentai", "AI", "Emby", "TikTok", "YouTube", "日本网站", "台湾网站", "国内直连", "国外代理", "广告拦截", "漏网之鱼" ], icon: "https://gh-proxy.com/github.com/MissToT/icon/raw/main/Global.png" }
+  - { name: "自动选择", <<: [ *UrlTest, *FilterSelect ], include-all-providers: true, hidden: false, icon: "https://axisnow.gh-proxy.org/github.com/MissToT/icon/raw/main/Auto.png" }
+  - { name: "手动选择", type: select, include-all-providers: true, interrupt-exist-connections: true, icon: "https://axisnow.gh-proxy.org/github.com/MissToT/icon/raw/main/Proxy.png" }
+  - { name: "订阅更新", <<: [ *Select, *FilterSelect ], icon: "https://axisnow.gh-proxy.org/github.com/MissToT/icon/raw/main/Stack.png" }
+  - { name: "谷歌推送", <<: [ *Select, *FilterSelect ], icon: "https://axisnow.gh-proxy.org/github.com/MissToT/icon/raw/main/Google_Search.png" }
+  - { name: "Telegram", <<: [ *Select, *FilterSelect ], icon: "https://axisnow.gh-proxy.org/github.com/MissToT/icon/raw/main/Telegram.png" }
+  - { name: "E-Hentai", <<: [ *Select, *FilterSelect ], icon: "https://axisnow.gh-proxy.org/github.com/MissToT/icon/raw/main/Exhentai.svg" }
+  - { name: "AI", <<: [ *Select, *FilterSelect ], icon: "https://axisnow.gh-proxy.org/github.com/MissToT/icon/raw/main/ChatGPT.png" }
+  - { name: "Emby", <<: [ *Select, *FilterSelect ], icon: "https://axisnow.gh-proxy.org/github.com/MissToT/icon/raw/main/Emby.png" }
+  - { name: "TikTok", <<: [ *Select, *FilterSelect ], icon: "https://axisnow.gh-proxy.org/github.com/MissToT/icon/raw/main/TikTok.png" }
+  - { name: "YouTube", <<: [ *Select, *FilterSelect ], icon: "https://axisnow.gh-proxy.org/github.com/MissToT/icon/raw/main/YouTube.png" }
+  - { name: "日本网站", <<: *Select, filter: "^(?=.*(?i)(日本|🇯🇵|JP))(?!.*(2.00x|排除2)).*$", icon: "https://axisnow.gh-proxy.org/github.com/MissToT/icon/raw/main/Japan.png" }
+  - { name: "台湾网站", <<: *Select, filter: "^(?=.*(?i)(香港|🇭🇰|HK|台湾|🇹🇼|TW))(?!.*(2.00x|排除2)).*$", icon: "https://axisnow.gh-proxy.org/github.com/MissToT/icon/raw/main/Taiwan.png" }
+  - { name: "国内直连", <<: [ *Select, *FilterSelect ], icon: "https://axisnow.gh-proxy.org/github.com/MissToT/icon/raw/main/China.png" }
+  - { name: "国外代理", <<: [ *Select, *FilterSelect ], icon: "https://axisnow.gh-proxy.org/github.com/MissToT/icon/raw/main/United_Nations.png" }
+  - { name: "广告拦截", type: select, proxies: [ "⛔️ 拒绝连接", "PASS" ], icon: "https://axisnow.gh-proxy.org/github.com/MissToT/icon/raw/main/AdBlack.png" }
+  - { name: "漏网之鱼", <<: [ *Select, *FilterSelect ], icon: "https://axisnow.gh-proxy.org/github.com/MissToT/icon/raw/main/Final.png" }
+  - { name: "GLOBAL", <<: [ *Select, *FilterSelect ], proxies: [ "自动选择", "手动选择", "订阅更新", "谷歌推送", "Telegram", "E-Hentai", "AI", "Emby", "TikTok", "YouTube", "日本网站", "台湾网站", "国内直连", "国外代理", "广告拦截", "漏网之鱼" ], icon: "https://axisnow.gh-proxy.org/github.com/MissToT/icon/raw/main/Global.png" }
 
 rule-providers:
-  GeoIP-China: { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geoip/china.mrs" }
-  GeoIP-Proxy: { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geoip/proxy.mrs" }
-  GeoIP-Private: { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geoip/private.mrs" }
-  GeoIP-Telegram: { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geoip/telegram.mrs" }
-  GeoIP-AI: { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geoip/ai.mrs" }
-  GeoSite-China: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/china.mrs" }
-  GeoSite-Proxy: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/proxy.mrs" }
-  GeoSite-Private: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/private.mrs" }
-  GeoSite-Telegram: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/telegram.mrs" }
-  GeoSite-GoogleFCM: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/googlefcm.mrs" }
-  GeoSite-AI: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/ai.mrs" }
-  GeoSite-Emby: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/emby.mrs" }
-  GeoSite-Japan: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/japan.mrs" }
-  GeoSite-Taiwan: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/taiwan.mrs" }
-  GeoSite-TikTok: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/tiktok.mrs" }
-  GeoSite-YouTube: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/youtube.mrs" }
-  GeoSite-E-Hentai: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/ehentai.mrs" }
-  GeoSite-Sniffer-Filter: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/sniffer-filter.mrs" }
-  GeoSite-FakeIP-Filter: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/fake-ip-filter.mrs" }
-  GeoSite-AdBlock: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/adblock.mrs" }
+  GeoIP-China: { <<: *IPCIDR, url: "https://axisnow.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geoip/china.mrs" }
+  GeoIP-Proxy: { <<: *IPCIDR, url: "https://axisnow.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geoip/proxy.mrs" }
+  GeoIP-Private: { <<: *IPCIDR, url: "https://axisnow.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geoip/private.mrs" }
+  GeoIP-Telegram: { <<: *IPCIDR, url: "https://axisnow.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geoip/telegram.mrs" }
+  GeoIP-AI: { <<: *IPCIDR, url: "https://axisnow.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geoip/ai.mrs" }
+  GeoSite-China: { <<: *DOMAIN, url: "https://axisnow.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/china.mrs" }
+  GeoSite-Proxy: { <<: *DOMAIN, url: "https://axisnow.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/proxy.mrs" }
+  GeoSite-Private: { <<: *DOMAIN, url: "https://axisnow.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/private.mrs" }
+  GeoSite-Telegram: { <<: *DOMAIN, url: "https://axisnow.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/telegram.mrs" }
+  GeoSite-GoogleFCM: { <<: *DOMAIN, url: "https://axisnow.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/googlefcm.mrs" }
+  GeoSite-AI: { <<: *DOMAIN, url: "https://axisnow.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/ai.mrs" }
+  GeoSite-Emby: { <<: *DOMAIN, url: "https://axisnow.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/emby.mrs" }
+  GeoSite-Japan: { <<: *DOMAIN, url: "https://axisnow.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/japan.mrs" }
+  GeoSite-Taiwan: { <<: *DOMAIN, url: "https://axisnow.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/taiwan.mrs" }
+  GeoSite-TikTok: { <<: *DOMAIN, url: "https://axisnow.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/tiktok.mrs" }
+  GeoSite-YouTube: { <<: *DOMAIN, url: "https://axisnow.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/youtube.mrs" }
+  GeoSite-E-Hentai: { <<: *DOMAIN, url: "https://axisnow.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/ehentai.mrs" }
+  GeoSite-Sniffer-Filter: { <<: *DOMAIN, url: "https://axisnow.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/sniffer-filter.mrs" }
+  GeoSite-FakeIP-Filter: { <<: *DOMAIN, url: "https://axisnow.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/fake-ip-filter.mrs" }
+  GeoSite-AdBlock: { <<: *DOMAIN, url: "https://axisnow.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/adblock.mrs" }
 
 rules:
   - DST-PORT,53,🔰 DNS-Hijack
