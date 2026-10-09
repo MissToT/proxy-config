@@ -41,8 +41,8 @@
       { "preferred_by": "dns-hosts", "server": "dns-hosts" },
       { "clash_mode": "Direct", "server": "dns-direct" },
       { "clash_mode": "Global", "server": "dns-global" },
-      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "AllowAds", "invert": true }, { "rule_set": "geosite/adblock" }, { "rule_set": "geosite/adblock-filter", "invert": true } ], "action": "predefined", "rcode": "NOERROR" },
-      { "query_type": [ "SVCB", "HTTPS" ], "action": "predefined", "rcode": "NOTIMP" },
+      { "query_type": [ "SVCB", "HTTPS" ], "action": "predefined", "rcode": "NOERROR", "ns": "*. 3600 IN SOA ns. hostmaster. 1 3600 600 86400 600" },
+      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "AllowAds", "invert": true }, { "rule_set": "geosite/adblock" } ], "action": "predefined", "rcode": "NOERROR", "answer": [ "*. 600 IN A 0.0.0.0", "*. 600 IN AAAA ::" ] },
       { "rule_set": "geosite/adblock", "server": "dns-fakeip" },
       { "rule_set": [ "geosite/fake-ip-filter", "geosite/china" ], "server": "dns-direct" },
       { "type": "logical", "mode": "and", "rules": [ { "query_type": [ "A", "AAAA" ] }, { "rule_set": "geosite/proxy", "invert": true } ], "action": "evaluate", "server": "dns-google", "client_subnet": "1.0.1.0/24" },
@@ -115,7 +115,7 @@
     "default_domain_resolver": "dns-direct",
     "default_domain_match_strategy": "prefer_fqdn",
     "rule_set": [
-      { "tag": [ "geoip/ai", "geosite/ai", "geoip/china", "geosite/china", "geoip/proxy", "geosite/proxy", "geosite/emby", "geosite/japan", "geosite/taiwan", "geosite/tiktok", "geoip/telegram", "geosite/telegram", "geosite/adblock", "geosite/ehentai", "geosite/youtube", "geosite/googlefcm", "geosite/adblock-filter", "geosite/fake-ip-filter" ], "type": "remote", "path": "./rules/{tag}.srs", "url": "https://axisnow.gh-proxy.org/github.com/MissToT/rule-set/raw/singbox/geo/{tag}.srs" }
+      { "tag": [ "geoip/ai", "geosite/ai", "geoip/china", "geosite/china", "geoip/proxy", "geosite/proxy", "geosite/emby", "geosite/japan", "geosite/taiwan", "geosite/tiktok", "geoip/telegram", "geosite/telegram", "geosite/adblock", "geosite/ehentai", "geosite/youtube", "geosite/googlefcm", "geosite/fake-ip-filter" ], "type": "remote", "path": "./rules/{tag}.srs", "url": "https://axisnow.gh-proxy.org/github.com/MissToT/rule-set/raw/singbox/geo/{tag}.srs" }
     ]
   }
 }
