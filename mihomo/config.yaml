@@ -12,7 +12,7 @@ DOMAIN: &DOMAIN { type: http, interval: 86400, proxy: "订阅更新", behavior: 
 CLASSICAL: &CLASSICAL { type: http, interval: 86400, proxy: "订阅更新", behavior: classical, format: text }
 # 锚点 - DNS服务
 DNS-Bootstrap: &DNS-Bootstrap [ 223.5.5.5, 119.29.29.29 ]
-DNS-SB-SNTP: &DNS-SB-SNTP [ "https://dns.alidns.com/dns-query#ecs=58.252.252.252/24&ecs-override=true", "https://doh.pub/dns-query#ecs=58.252.252.252/24&ecs-override=true" ]
+DNS-SB-SNTP: &DNS-SB-SNTP [ "https://doh.pub/dns-query#ecs=58.252.252.252/24&ecs-override=true" ]
 DNS-Direct: &DNS-Direct [ "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query" ]
 DNS-Global: &DNS-Global [ "https://cloudflare-dns.com/dns-query#GLOBAL", "https://dns.google/dns-query#GLOBAL" ]
 # 锚点 - 远程订阅组
