@@ -25,6 +25,16 @@
       "access_control_allow_private_network": true
     }
   },
+  "services": [
+    {
+      "type": "api",
+      "listen": "0.0.0.0",
+      "listen_port": 9191,
+      "secret": "RurukaSuki",
+      "access_control_allow_origin": "*",
+      "access_control_allow_private_network": true
+    }
+  ],
   "dns": {
     "servers": [
       { "tag": "dns-hosts", "type": "hosts", "predefined": { "services.googleapis.cn": [ "64.233.188.94", "64.233.189.94" ] } },
