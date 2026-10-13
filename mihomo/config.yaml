@@ -57,7 +57,6 @@ sniffer:
     HTTP: { ports: [ 80, 8080-8880 ], override-destination: true }
     TLS: { ports: [ 443, 8443 ] }
     QUIC: { ports: [ 443, 8443 ] }
-  skip-domain: [ "rule-set:GeoSite-Sniffer-Filter" ]
 
 hosts:
   "services.googleapis.cn": [ 64.233.188.94, 64.233.189.94 ]
@@ -135,7 +134,6 @@ rule-providers:
   GeoSite-TikTok: { <<: *DOMAIN, url: "https://axisnow.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/tiktok.mrs" }
   GeoSite-YouTube: { <<: *DOMAIN, url: "https://axisnow.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/youtube.mrs" }
   GeoSite-E-Hentai: { <<: *DOMAIN, url: "https://axisnow.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/ehentai.mrs" }
-  GeoSite-Sniffer-Filter: { <<: *DOMAIN, url: "https://axisnow.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/sniffer-filter.mrs" }
   GeoSite-FakeIP-Filter: { <<: *DOMAIN, url: "https://axisnow.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/fake-ip-filter.mrs" }
   GeoSite-AdBlock: { <<: *DOMAIN, url: "https://axisnow.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/adblock.mrs" }
 
