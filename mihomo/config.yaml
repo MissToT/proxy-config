@@ -1,6 +1,6 @@
 ############################################## - ⚓️ 锚点区开始 - ##############################################
 # 锚点 - 筛选组
-FilterSelect: &FilterSelect { filter: "^(?=.*(?i)(香港|🇭🇰|HK|台湾|🇹🇼|TW|日本|🇯🇵|JP|美国|🇺🇸|US|新加坡|狮城|🇸🇬|SG|韩国|首尔|🇰🇷|KR|KOR|英国|🇬🇧|UK|GB|德国|🇩🇪|DE))(?!.*(2.00x|排除2)).*$" }
+FilterSelect: &FilterSelect { filter: "^(?=.*(?i:(香港|🇭🇰|HK|台湾|🇹🇼|TW|日本|🇯🇵|JP|美国|🇺🇸|US|新加坡|狮城|🇸🇬|SG|韩国|首尔|🇰🇷|KR|KOR|英国|🇬🇧|UK|GB|德国|🇩🇪|DE)))(?!.*(?i:(?<![0-9.])0?[2-9](?:\.[0-9]+)?(?:[x×]|\s*倍)|(?<![A-Za-z])[x×]\s*(?:0?[2-9](?:\.[0-9]+)?|[1-9][0-9]+(?:\.[0-9]+)?|1\.[0-9]*[1-9])|倍率\s*[:：=]?\s*(?:0?[2-9](?:\.[0-9]+)?|[1-9][0-9]+(?:\.[0-9]+)?|1\.[0-9]*[1-9])|高倍率|排除2)).*$" }
 FilterOthers: &FilterOthers { filter: "^(?!.*(DIRECT|Traffic|TRAFFIC|Expire|EXPIRE|流量|到期|时间|重置))" }
 # 锚点 - 策略组
 Select: &Select { type: select, include-all-providers: true, interrupt-exist-connections: true, proxies: [ "自动选择", "手动选择", "🌐 本地直连", "⛔️ 拒绝连接"] }
@@ -11,12 +11,12 @@ IPCIDR: &IPCIDR { type: http, interval: 86400, proxy: "订阅更新", behavior: 
 DOMAIN: &DOMAIN { type: http, interval: 86400, proxy: "订阅更新", behavior: domain, format: mrs }
 CLASSICAL: &CLASSICAL { type: http, interval: 86400, proxy: "订阅更新", behavior: classical, format: text }
 # 锚点 - DNS服务
-DNS-Bootstrap: &DNS-Bootstrap [ 223.5.5.5, 119.29.29.29 ]
+DNS-Boot: &DNS-Boot [ 223.5.5.5, 119.29.29.29 ]
 DNS-Tencent-ECS: &DNS-Tencent-ECS [ "https://doh.pub/dns-query#ecs=123.123.123.123/32&ecs-override=true" ]
 DNS-Direct: &DNS-Direct [ "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query" ]
 DNS-Global: &DNS-Global [ "https://cloudflare-dns.com/dns-query#GLOBAL", "https://dns.google/dns-query#GLOBAL" ]
-DNS-Direct-Strip: &DNS-Direct-Strip [ "https://dns.alidns.com/dns-query#disable-qtype-64=true&disable-qtype-65=true", "https://doh.pub/dns-query#disable-qtype-64=true&disable-qtype-65=true" ]
-DNS-Global-Strip: &DNS-Global-Strip [ "https://cloudflare-dns.com/dns-query#GLOBAL&disable-qtype-64=true&disable-qtype-65=true", "https://dns.google/dns-query#GLOBAL&disable-qtype-64=true&disable-qtype-65=true" ]
+DNS-Direct-No64&65: &DNS-Direct-No64&65 [ "https://dns.alidns.com/dns-query#disable-qtype-64=true&disable-qtype-65=true", "https://doh.pub/dns-query#disable-qtype-64=true&disable-qtype-65=true" ]
+DNS-Global-No64&65: &DNS-Global-No64&65 [ "https://cloudflare-dns.com/dns-query#GLOBAL&disable-qtype-64=true&disable-qtype-65=true", "https://dns.google/dns-query#GLOBAL&disable-qtype-64=true&disable-qtype-65=true" ]
 # 锚点 - 远程订阅组
 Providers: &Providers { type: http, interval: 86400, proxy: "订阅更新", health-check: { enable: true, url: "https://captive.apple.com/generate_204", interval: 600 }, <<: *FilterOthers }
 ############################################## - ⚓️ 锚点区结束 - ##############################################
@@ -78,10 +78,10 @@ dns:
     - RULE-SET,GeoSite-Private,real-ip
     - RULE-SET,GeoSite-China,real-ip
     - MATCH,fake-ip
-  default-nameserver: *DNS-Bootstrap
+  default-nameserver: *DNS-Boot
   proxy-server-nameserver: *DNS-Direct
   proxy-server-nameserver-policy: { "+.266nets.com": *DNS-Tencent-ECS, "+.nodecon.uk": *DNS-Tencent-ECS }
-  nameserver: *DNS-Direct-Strip
+  nameserver: *DNS-Direct-No64&65
 
 tun:
   enable: false
