@@ -38,9 +38,9 @@
   "dns": {
     "servers": [
       { "tag": "dns-hosts", "type": "hosts", "predefined": { "services.googleapis.cn": [ "64.233.188.94", "64.233.189.94" ] } },
-      { "tag": "dns-bootstrap", "type": "udp", "server": "223.5.5.5" },
-      { "tag": "dns-ali", "type": "https", "server": "dns.alidns.com", "domain_resolver": "dns-bootstrap" },
-      { "tag": "dns-tencent", "type": "https", "server": "doh.pub", "domain_resolver": "dns-bootstrap" },
+      { "tag": "dns-boot", "type": "udp", "server": "223.5.5.5" },
+      { "tag": "dns-ali", "type": "https", "server": "dns.alidns.com", "domain_resolver": "dns-boot" },
+      { "tag": "dns-tencent", "type": "https", "server": "doh.pub", "domain_resolver": "dns-boot" },
       { "tag": "dns-cloudflare", "type": "https", "server": "cloudflare-dns.com", "detour": "GLOBAL" },
       { "tag": "dns-google", "type": "https", "server": "dns.google", "detour": "GLOBAL" },
       { "tag": "dns-direct", "type": "group", "servers": [ "dns-ali", "dns-tencent" ] },
