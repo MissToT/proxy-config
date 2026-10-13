@@ -12,9 +12,11 @@ DOMAIN: &DOMAIN { type: http, interval: 86400, proxy: "订阅更新", behavior: 
 CLASSICAL: &CLASSICAL { type: http, interval: 86400, proxy: "订阅更新", behavior: classical, format: text }
 # 锚点 - DNS服务
 DNS-Bootstrap: &DNS-Bootstrap [ 223.5.5.5, 119.29.29.29 ]
-DNS-SB-SNTP: &DNS-SB-SNTP [ "https://doh.pub/dns-query#ecs=123.123.123.123/32&ecs-override=true" ]
+DNS-Tencent-ECS: &DNS-Tencent-ECS [ "https://doh.pub/dns-query#ecs=123.123.123.123/32&ecs-override=true" ]
 DNS-Direct: &DNS-Direct [ "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query" ]
 DNS-Global: &DNS-Global [ "https://cloudflare-dns.com/dns-query#GLOBAL", "https://dns.google/dns-query#GLOBAL" ]
+DNS-Direct-Strip: &DNS-Direct-Strip [ "https://dns.alidns.com/dns-query#disable-qtype-64=true&disable-qtype-65=true", "https://doh.pub/dns-query#disable-qtype-64=true&disable-qtype-65=true" ]
+DNS-Global-Strip: &DNS-Global-Strip [ "https://cloudflare-dns.com/dns-query#GLOBAL&disable-qtype-64=true&disable-qtype-65=true", "https://dns.google/dns-query#GLOBAL&disable-qtype-64=true&disable-qtype-65=true" ]
 # 锚点 - 远程订阅组
 Providers: &Providers { type: http, interval: 86400, proxy: "订阅更新", health-check: { enable: true, url: "https://captive.apple.com/generate_204", interval: 600 }, <<: *FilterOthers }
 ############################################## - ⚓️ 锚点区结束 - ##############################################
@@ -78,8 +80,8 @@ dns:
     - MATCH,fake-ip
   default-nameserver: *DNS-Bootstrap
   proxy-server-nameserver: *DNS-Direct
-  proxy-server-nameserver-policy: { "+.266nets.com": *DNS-SB-SNTP, "+.nodecon.uk": *DNS-SB-SNTP }
-  nameserver: *DNS-Direct
+  proxy-server-nameserver-policy: { "+.266nets.com": *DNS-Tencent-ECS, "+.nodecon.uk": *DNS-Tencent-ECS }
+  nameserver: *DNS-Direct-Strip
 
 tun:
   enable: false
