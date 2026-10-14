@@ -145,11 +145,11 @@ rules:
   - RULE-SET,GeoSite-Private,🌐 本地直连
   - RULE-SET,GeoSite-GoogleFCM,谷歌推送
   - RULE-SET,GeoSite-Telegram,Telegram
-  - RULE-SET,GeoSite-TikTok,TikTok
-  - RULE-SET,GeoSite-AI,AI
-  - RULE-SET,GeoSite-YouTube,YouTube
-  - RULE-SET,GeoSite-Emby,Emby
   - RULE-SET,GeoSite-E-Hentai,E-Hentai
+  - RULE-SET,GeoSite-AI,AI
+  - RULE-SET,GeoSite-Emby,Emby
+  - RULE-SET,GeoSite-TikTok,TikTok
+  - RULE-SET,GeoSite-YouTube,YouTube
   - RULE-SET,GeoSite-Japan,日本网站
   - RULE-SET,GeoSite-Taiwan,台湾网站
   - RULE-SET,GeoSite-Proxy,国外代理
