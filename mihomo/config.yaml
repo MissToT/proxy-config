@@ -38,7 +38,7 @@ bind-address: '*'
 unified-delay: true
 tcp-concurrent: true
 find-process-mode: always
-authentication: [ 'Ruruka:DaiSuiKi' ]
+authentication: [ 'Ruruka:DaiSuKi' ]
 skip-auth-prefixes: [ '127.0.0.1/8', '::1/128' ]
 
 external-ui-url: 'https://axisnow.gh-proxy.org/github.com/11b7ac04f8/dashboard/releases/latest/download/dist.zip'
