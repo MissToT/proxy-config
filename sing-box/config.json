@@ -38,6 +38,7 @@
   "dns": {
     "servers": [
       { "tag": "dns-hosts", "type": "hosts", "predefined": { "services.googleapis.cn": [ "64.233.188.94", "64.233.189.94" ] } },
+      { "tag": "dns-ts", "type": "tailscale", "endpoint": "ts-ep" },
       { "tag": "dns-boot", "type": "udp", "server": "223.5.5.5" },
       { "tag": "dns-ali", "type": "https", "server": "dns.alidns.com", "domain_resolver": "dns-boot" },
       { "tag": "dns-tencent", "type": "https", "server": "doh.pub", "domain_resolver": "dns-boot" },
@@ -49,6 +50,7 @@
     ],
     "rules": [
       { "preferred_by": "dns-hosts", "server": "dns-hosts" },
+      { "preferred_by": "dns-ts", "server": "dns-ts" },
       { "clash_mode": "Direct", "server": "dns-direct" },
       { "clash_mode": "Global", "server": "dns-global" },
       { "query_type": [ "SVCB", "HTTPS" ], "action": "predefined", "rcode": "NOERROR" },
@@ -65,6 +67,9 @@
   },
   "http_clients": [
     { "tag": "sub-client", "detour": "📦 订阅更新" }
+  ],
+  "endpoints": [
+    { "tag": "ts-ep", "type": "tailscale", "hostname": "Ruruka", "auth_key": "tskey-auth-llllIIIIlllIII-llllIIIIlllIII" }
   ],
   "inbounds": [
     { "tag": "mixed-in", "type": "mixed", "listen": "::", "listen_port": 7890 },
@@ -93,6 +98,7 @@
   "route": {
     "rules": [
       { "port": 53, "action": "hijack-dns" },
+      { "preferred_by": "ts-ep", "outbound": "ts-ep" },
       { "ip_is_private": true, "action": "bypass", "outbound": "🌐 本地直连" },
       { "clash_mode": "Direct", "action": "bypass", "outbound": "🌐 本地直连" },
       { "clash_mode": "Global", "outbound": "GLOBAL" },
