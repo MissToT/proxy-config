@@ -61,7 +61,6 @@
       { "query_type": [ "A", "AAAA" ], "server": "dns-fakeip" }
     ],
     "final": "dns-global",
-    "strategy": "prefer_ipv4",
     "optimistic": true,
     "reverse_mapping": true
   },
