@@ -78,10 +78,9 @@
   "outbounds": [
     { "tag": "⛔️ 拒绝连接", "type": "block" },
     { "tag": "🌐 本地直连", "type": "direct" },
-    { "tag": "🏠 回家节点", "type": "tailcat", "derp_region": 304, "server_public_key": "", "server_disco_key": "", "pre_shared_key": "" },
+    { "tag": "🏠 家庭网络", "type": "tailcat", "derp_region": 304, "server_public_key": "", "server_disco_key": "", "pre_shared_key": "" },
     { "tag": "♻️ 自动选择", "type": "urltest", "use_all_providers": true, "interrupt_exist_connections": true, "url": "https://cp.cloudflare.com", "interval": "3m", "tolerance": 100 },
     { "tag": "🎯 手动选择", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true },
-    { "tag": "🍀 家庭服务", "type": "selector", "interrupt_exist_connections": true, "outbounds": [ "🌐 本地直连", "🏠 回家节点" ] },
     { "tag": "📦 订阅更新", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "💌 谷歌推送", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "📱 Telegram", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
@@ -95,13 +94,13 @@
     { "tag": "🇨🇳 国内直连", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🇺🇳 国外代理", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🍥 漏网之鱼", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🍀 家庭服务", "📦 订阅更新", "💌 谷歌推送", "📱 Telegram", "📚 E-Hentai", "🤖 AI", "🎬 Emby", "🎶 TikTok", "📺 YouTube", "🇯🇵 日本网站", "🇹🇼 台湾网站", "🇨🇳 国内直连", "🇺🇳 国外代理", "🍥 漏网之鱼" ] }
+    { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "📦 订阅更新", "💌 谷歌推送", "📱 Telegram", "📚 E-Hentai", "🤖 AI", "🎬 Emby", "🎶 TikTok", "📺 YouTube", "🇯🇵 日本网站", "🇹🇼 台湾网站", "🇨🇳 国内直连", "🇺🇳 国外代理", "🍥 漏网之鱼" ] }
   ],
   "route": {
     "rules": [
       { "port": 53, "action": "hijack-dns" },
       { "preferred_by": "ts-ep", "outbound": "ts-ep" },
-      { "rule_set": "geoip/home", "outbound": "🍀 家庭服务" },
+      { "clash_mode": "Home", "rule_set": "geoip/home", "outbound": "🏠 家庭网络" },
       { "ip_is_private": true, "action": "bypass", "outbound": "🌐 本地直连" },
       { "clash_mode": "Direct", "action": "bypass", "outbound": "🌐 本地直连" },
       { "clash_mode": "Global", "outbound": "GLOBAL" },
