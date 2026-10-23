@@ -46,7 +46,7 @@
       { "tag": "dns-google", "type": "https", "server": "dns.google", "detour": "GLOBAL" },
       { "tag": "dns-direct", "type": "group", "servers": [ "dns-ali", "dns-tencent" ] },
       { "tag": "dns-global", "type": "group", "servers": [ "dns-cloudflare", "dns-google" ] },
-      { "tag": "dns-fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/15", "inet6_range": "2001:2::/48" }
+      { "tag": "dns-fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/15" }
     ],
     "rules": [
       { "preferred_by": "dns-hosts", "server": "dns-hosts" },
@@ -103,10 +103,11 @@
       { "ip_is_private": true, "action": "bypass", "outbound": "🌐 本地直连" },
       { "clash_mode": "Direct", "action": "bypass", "outbound": "🌐 本地直连" },
       { "clash_mode": "Global", "outbound": "GLOBAL" },
+      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "AllowAds", "invert": true }, { "rule_set": "geosite/adblock" } ], "action": "reject", "no_drop": true },
       { "rule_set": "geoip/china", "action": "bypass" },
+      { "ip_version": 6, "action": "reject", "no_drop": true },
       { "action": "sniff" },
       { "protocol": "dns", "action": "hijack-dns" },
-      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "AllowAds", "invert": true }, { "rule_set": "geosite/adblock" } ], "action": "reject" },
       { "rule_set": "geosite/googlefcm", "outbound": "💌 谷歌推送" },
       { "rule_set": "geosite/telegram", "outbound": "📱 Telegram" },
       { "rule_set": "geosite/ehentai", "outbound": "📚 E-Hentai" },
