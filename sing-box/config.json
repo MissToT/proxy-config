@@ -39,33 +39,33 @@
     "servers": [
       { "tag": "dns-hosts", "type": "hosts", "predefined": { "services.googleapis.cn": [ "64.233.188.94", "64.233.189.94" ] } },
       { "tag": "dns-fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/15" },
-      { "tag": "dns-tails", "type": "tailscale", "endpoint": "tails-ep" },
+      { "tag": "dns-magic", "type": "tailscale", "endpoint": "tailscale-ep" },
       { "tag": "udp-ali", "type": "udp", "server": "223.5.5.5" },
-      { "tag": "udp-tencent", "type": "udp", "server": "119.29.29.29" },
-      { "tag": "doh-ali", "type": "https", "server": "dns.alidns.com", "domain_resolver": "udp-direct" },
-      { "tag": "doh-tencent", "type": "https", "server": "doh.pub", "domain_resolver": "udp-direct" },
+      { "tag": "udp-pod", "type": "udp", "server": "119.29.29.29" },
+      { "tag": "doh-ali", "type": "https", "server": "dns.alidns.com", "domain_resolver": "dns-bootstrap" },
+      { "tag": "doh-pod", "type": "https", "server": "doh.pub", "domain_resolver": "dns-bootstrap" },
       { "tag": "doh-cloudflare", "type": "https", "server": "cloudflare-dns.com", "detour": "GLOBAL" },
       { "tag": "doh-google", "type": "https", "server": "dns.google", "detour": "GLOBAL" },
-      { "tag": "doh-sdcs", "type": "https", "server": "sdcs.sczux.com", "server_port": 2443, "path": "", "domain_resolver": "udp-direct" },
-      { "tag": "doh-rcds", "type": "https", "server": "rcds.r38665.com", "server_port": 2443, "path": "", "domain_resolver": "udp-direct" },
-      { "tag": "udp-direct", "type": "group", "servers": [ "udp-ali", "udp-tencent" ] },
-      { "tag": "doh-direct", "type": "group", "servers": [ "doh-ali", "doh-tencent" ] },
-      { "tag": "doh-global", "type": "group", "servers": [ "doh-cloudflare", "doh-google" ] },
-      { "tag": "doh-sntp", "type": "group", "servers": [ "doh-sdcs", "doh-rcds" ] }
+      { "tag": "doh-sntp-1", "type": "https", "server": "sdcs.sczux.com", "server_port": 2443, "path": "/dns-query/fd231c09-f1c4-4d38-9e55-3135e9b3ca8f", "domain_resolver": "dns-bootstrap" },
+      { "tag": "doh-sntp-2", "type": "https", "server": "rcds.r38665.com", "server_port": 2443, "path": "/dns-query/01ee72c8-ae9e-4b0a-99f2-d6465ea2e59e", "domain_resolver": "dns-bootstrap" },
+      { "tag": "dns-bootstrap", "type": "group", "servers": [ "udp-ali", "udp-pod" ] },
+      { "tag": "dns-domestic", "type": "group", "servers": [ "doh-ali", "doh-pod" ] },
+      { "tag": "dns-overseas", "type": "group", "servers": [ "doh-cloudflare", "doh-google" ] },
+      { "tag": "dns-sntp", "type": "group", "servers": [ "doh-sntp-1", "doh-sntp-2" ] }
     ],
     "rules": [
       { "preferred_by": "dns-hosts", "server": "dns-hosts" },
-      { "preferred_by": "dns-tails", "server": "dns-tails" },
-      { "clash_mode": "Direct", "server": "doh-direct" },
-      { "clash_mode": "Global", "server": "doh-global" },
+      { "preferred_by": "dns-magic", "server": "dns-magic" },
+      { "clash_mode": "Direct", "server": "dns-domestic" },
+      { "clash_mode": "Global", "server": "dns-overseas" },
       { "query_type": [ "SVCB", "HTTPS" ], "action": "predefined", "rcode": "NOERROR" },
       { "rule_set": "geosite/adblock", "server": "dns-fakeip" },
-      { "rule_set": [ "geosite/fakeip-filter", "geosite/china" ], "server": "doh-direct" },
+      { "rule_set": [ "geosite/fakeip-filter", "geosite/china" ], "server": "dns-domestic" },
       { "type": "logical", "mode": "and", "rules": [ { "query_type": [ "A", "AAAA" ] }, { "rule_set": "geosite/proxy", "invert": true } ], "action": "evaluate", "server": "doh-google", "client_subnet": "1.0.1.0/24" },
-      { "match_response": true, "rule_set": "geoip/china", "server": "doh-direct" },
+      { "match_response": true, "rule_set": "geoip/china", "server": "dns-domestic" },
       { "query_type": [ "A", "AAAA" ], "server": "dns-fakeip" }
     ],
-    "final": "doh-global",
+    "final": "dns-overseas",
     "optimistic": true,
     "reverse_mapping": true
   },
@@ -73,7 +73,7 @@
     { "tag": "sub-client", "detour": "📦 订阅更新" }
   ],
   "endpoints": [
-    { "tag": "tails-ep", "type": "tailscale", "hostname": "Ruruka" }
+    { "tag": "tailscale-ep", "type": "tailscale", "hostname": "Ruruka" }
   ],
   "inbounds": [
     { "tag": "tun-in", "type": "tun", "address": [ "172.18.0.1/30", "fdfe:dcba:9876::1/126" ], "auto_route": true, "strict_route": true, "auto_redirect": true }
@@ -102,7 +102,7 @@
   "route": {
     "rules": [
       { "port": 53, "action": "hijack-dns" },
-      { "preferred_by": "tails-ep", "outbound": "tails-ep" },
+      { "preferred_by": "tailscale-ep", "outbound": "tailscale-ep" },
       { "clash_mode": "Home", "rule_set": "geoip/home", "outbound": "🏠 回家节点" },
       { "ip_is_private": true, "action": "bypass", "outbound": "🌐 本地直连" },
       { "clash_mode": "Direct", "action": "bypass", "outbound": "🌐 本地直连" },
@@ -133,7 +133,7 @@
     "tcp_concurrent_dial": true,
     "auto_detect_interface": true,
     "default_http_client": "sub-client",
-    "default_domain_resolver": "doh-direct",
+    "default_domain_resolver": "dns-domestic",
     "default_domain_match_strategy": "prefer_fqdn",
     "rule_set": [
       { "tag": [ "geoip/ai", "geosite/ai", "geoip/china", "geosite/china", "geoip/proxy", "geosite/proxy", "geoip/home", "geosite/emby", "geosite/japan", "geosite/taiwan", "geosite/tiktok", "geoip/telegram", "geosite/telegram", "geosite/adblock", "geosite/ehentai", "geosite/youtube", "geosite/googlefcm", "geosite/fakeip-filter" ], "type": "remote", "path": "./rules/{tag}.srs", "url": "https://axisnow.gh-proxy.org/github.com/MissToT/rule-set/raw/singbox/geo/{tag}.srs" }
