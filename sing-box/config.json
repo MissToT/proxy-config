@@ -5,8 +5,7 @@
   ],
   "log": {
     "level": "panic",
-    "timestamp": true,
-    "output": "sing-box.log"
+    "timestamp": true
   },
   "experimental": {
     "urltest_unified_delay": true,
